@@ -2,6 +2,10 @@
   <strong>Schedule:</strong>
   <%= @task.schedule %>
 </p>
+<p>
+  <strong>Type:</strong>
+  <%= @task.type %>
+</p>
 
 <%= link_to 'Back', tasks_path %>
 <%= link_to 'Edit', edit_task_path(@task) %>

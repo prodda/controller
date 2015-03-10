@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308213259) do
+ActiveRecord::Schema.define(version: 20150310054141) do
+
+  create_table "no_op_tasks", force: :cascade do |t|
+    t.integer  "actable_id"
+    t.string   "actable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string   "schedule"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "sleep_duration"
+    t.string   "type"
+    t.string   "url"
   end
 
 end

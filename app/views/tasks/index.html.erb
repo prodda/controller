@@ -5,11 +5,13 @@
 <table>
   <tr>
     <th>Schedule</th>
+    <th>Type</th>
   </tr>
 
   <% @tasks.each do |task| %>
       <tr>
         <td><%= task.schedule %></td>
+        <td><%= task.type %></td>
         <td><%= link_to 'Show', task_path(task) %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task_path(task),

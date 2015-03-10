@@ -1,6 +1,18 @@
 class TasksController < ApplicationController
+  def task_types
+    ['NoOpTask', 'UrlGetTask']
+  end
+
+  def task_type
+    Rails.logger.info "task_types: #{task_types}"
+    Rails.logger.info "params[:type]: #{params[:type].inspect}"
+    actual = task_types.include?(params[:type]) ? params[:type] : 'Task'
+    Rails.logger.info "actual: #{actual.inspect}"
+    actual
+  end
+
   def index
-    @tasks = Task.all
+    @tasks = task_type.constantize.all
   end
 
   def show
@@ -16,7 +28,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = task_type.new(task_params)
 
     if @task.save
       redirect_to @task
@@ -44,6 +56,6 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:schedule)
+    params.require(:task).permit(:schedule, :type)
   end
 end
